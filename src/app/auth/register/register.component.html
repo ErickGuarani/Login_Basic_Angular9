@@ -6,11 +6,18 @@
                 <form [formGroup]="registerForm"  >
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" class="form-control" formControlName="email">
+                        <input type="email" class="form-control" formControlName="email" placeholder="Enter your email">
+                        <div *ngIf="registerForm.controls['email'].invalid && registerForm.controls['email'].dirty" class="alert alert-danger" role="alert">
+                            <span *ngIf="registerForm.controls['email'].errors.required">Mail is required</span>
+                            <span *ngIf="registerForm.controls['email'].errors.email">Invalid mail</span> 
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" formControlName="password">
+                        <input type="password" (keyUp.enter)="onRegister()" class="form-control" formControlName="password" placeholder="Enter your password ">
+                        <div *ngIf="registerForm.controls['password'].invalid && registerForm.controls['password'].dirty" class="alert alert-danger" role="alert">
+                            <span *ngIf="registerForm.controls['password'].errors.required">The password is required</span> 
+                        </div>
                     </div>
                     <button type="submit" (click)="onRegister()" [disabled]="!registerForm.valid" class="btn btn-primary btn-lg btn-block">Register</button>
                 </form>

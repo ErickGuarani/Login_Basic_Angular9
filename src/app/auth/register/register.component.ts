@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class RegisterComponent implements OnInit {
   correctData = true;
   textError = '';
 
-  constructor(private formCreator: FormBuilder, private authSvc: AuthService, private router: Router) { }
+  constructor(private formCreator: FormBuilder, private authSvc: AuthService, private router: Router, public auth: AngularFireAuth) { }
 
   ngOnInit(): void {
     this.registerForm = this.formCreator.group({
@@ -39,7 +40,7 @@ export class RegisterComponent implements OnInit {
 
   //      // const { email, password} = this.loginForm.value;
        try {
-            const user = await this.authSvc.register(this.registerForm.value.email, this.registerForm.value.password);
+            const user = await this.auth.createUserWithEmailAndPassword(this.registerForm.value.email, this.registerForm.value.password);
             if (user){
             // redirect to
             this.router.navigate(['/verification-email']);
@@ -47,7 +48,7 @@ export class RegisterComponent implements OnInit {
           }
       catch (error)
           {
-            // console.log(error.message);
+            console.log(error.message);
             this.correctData = false;
             this.textError = error.message;
           }

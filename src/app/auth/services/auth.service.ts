@@ -40,16 +40,16 @@ export class AuthService {
   //   catch (error){console.log(error);
   //   }
   // }
-  async register(email: string, password: string){
-    try{const result = await this.afAuth.createUserWithEmailAndPassword(email, password);
-        this.sendVerificationEmail();
-        return result;
-    }catch (error)
-    {
-      console.log(error);
-      return error;
-    }
-  }
+  // async register(email: string, password: string){
+  //   try{const result = await this.afAuth.createUserWithEmailAndPassword(email, password);
+  //       this.sendVerificationEmail();
+  //       return result;
+  //   }catch (error)
+  //   {
+  //     console.log(error);
+  //     return error;
+  //   }
+  // }
   async logout(){
     try{
       await this.afAuth.signOut();
