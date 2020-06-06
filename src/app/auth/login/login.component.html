@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-md-6 mx-auto mt-5">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="text-center">Login</h1>
+                <form [formGroup]="loginForm"  >
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" formControlName="email" placeholder="Enter your email">
+                        <div *ngIf="loginForm.controls['email'].invalid && loginForm.controls['email'].dirty" class="alert alert-danger" role="alert">
+                            <span *ngIf="loginForm.controls['email'].errors.required">Mail is required</span>
+                            <span *ngIf="loginForm.controls['email'].errors.email">Invalid mail</span> 
+                          </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" (keyUp.enter)="onLogin()" class="form-control" formControlName="password" placeholder="Enter your password">
+                        <div *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].dirty" class="alert alert-danger" role="alert">
+                            <span *ngIf="loginForm.controls['password'].errors.required">The password is required</span> 
+                        </div>
+                    </div>
+                    <button type="submit" (click)="onLogin()" [disabled]="!loginForm.valid" class="btn btn-primary btn-lg btn-block">Login</button>
+                </form>
+                <div *ngIf="!correctData" class="alert alert-warning" role="alert">
+                    {{textError}}
+                  </div>
+                <div class="form-group mt-3">
+                    <button class="btn btn-lg btn-google" (click)="onGoogleLogin()">Google</button>
+                </div>
+
+                <div class="clas form-group mt-3">
+                    <p> Create an acount? <a [routerLink]="['/register']"> Register </a></p>
+                </div>
+                <div class="clas form-group mt-3">
+                    <p>  <a [routerLink]="['/forgot-password']"> Forgot password? </a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

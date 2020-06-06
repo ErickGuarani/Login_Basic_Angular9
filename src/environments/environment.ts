@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+   firebaseConfig : {
+    apiKey: "AIzaSyDZgM_vqbhlA9LdAsLbjDCpPA7Ir6C2ylM",
+    authDomain: "superparqueo.firebaseapp.com",
+    databaseURL: "https://superparqueo.firebaseio.com",
+    projectId: "superparqueo",
+    storageBucket: "superparqueo.appspot.com",
+    messagingSenderId: "768256485322",
+    appId: "1:768256485322:web:12e6bfb9aca6422bded133"
+  },
 };
 
 /*
